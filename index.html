@@ -64,21 +64,21 @@ let userCity = "Unknown";
 // 📩 GOOGLE FORM URL
 let formURL = "https://docs.google.com/forms/d/e/1FAIpQLSdnBM-zueKRz-eBC_DM3iyxTu5XwHNyojQEjOm9c7tkkTd0Jg/formResponse";
 
-// 🌍 ACCURATE CITY FETCH USING BROWSER GPS
+// 🌍 BROWSER GEOLOCATION + GOOGLE GEOCODING API
 function fetchCity(callback){
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(
             position => {
-                let lat = position.coords.latitude;
-                let lon = position.coords.longitude;
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
 
-                // ✅ Free test API key (for small scale testing)
-                let apiKey = "AIzaSyD-VGcjGzZJtX2hY6M5p6zjQw4w7UcTrPE"; 
-
+                // Use your Google API Key here
+                const apiKey = "AIzaSyD-VGcjGzZJtX2hY6M5p6zjQw4w7UcTrPE"; // Free test key
                 fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`)
                 .then(res => res.json())
                 .then(data => {
-                    let cityObj = data.results[0].address_components.find(c=>c.types.includes("locality"));
+                    // Find city from address components
+                    const cityObj = data.results[0].address_components.find(c => c.types.includes("locality"));
                     userCity = cityObj ? cityObj.long_name : "Unknown";
                     callback();
                 })
@@ -89,7 +89,7 @@ function fetchCity(callback){
                 });
             },
             err=>{
-                console.log("GPS permission denied or error:", err);
+                console.log("GPS denied or error:", err);
                 userCity = "Unknown";
                 callback();
             }
