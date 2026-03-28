@@ -106,16 +106,16 @@ fetch("https://ipapi.co/json/")
     userCity = data.city;
 });
 
-// 🔥 PAGE OPEN TRACK
+// 📊 PAGE OPEN TRACK
 window.onload = () => {
     setTimeout(() => {
         fetch(formURL, {
             method: "POST",
             mode: "no-cors",
             body: new URLSearchParams({
-                "entry.831234571": userID,
-                "entry.1483827053": "OPEN",
-                "entry.819959226": userCity
+                "entry.1395297289": userID,
+                "entry.1462309876": "OPEN",
+                "entry.1173362905": userCity
             })
         });
     }, 1500);
@@ -148,9 +148,9 @@ yesBtn.onclick = () => {
         method: "POST",
         mode: "no-cors",
         body: new URLSearchParams({
-            "entry.831234571": userID,
-            "entry.1483827053": "YES",
-            "entry.819959226": userCity
+            "entry.1395297289": userID,
+            "entry.1462309876": "YES",
+            "entry.1173362905": userCity
         })
     });
 
@@ -176,9 +176,9 @@ noBtn.onclick = () => {
         method: "POST",
         mode: "no-cors",
         body: new URLSearchParams({
-            "entry.831234571": userID,
-            "entry.1483827053": "NO",
-            "entry.819959226": userCity
+            "entry.1395297289": userID,
+            "entry.1462309876": "NO",
+            "entry.1173362905": userCity
         })
     });
 
@@ -198,7 +198,7 @@ noBtn.onclick = () => {
     currentSet = (currentSet + 1) % emojiSets.length;
 };
 
-// FLOATING EMOJIS
+// 🌟 FLOATING EMOJIS
 function createFloat(){
     let el = document.createElement("div");
     el.classList.add("float");
